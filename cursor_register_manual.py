@@ -115,6 +115,25 @@ class CursorRegistration:
             print(f"{Fore.RED}{EMOJI['ERROR']} {self.translator.get('register.code_input_failed', error=str(e))}{Style.RESET_ALL}")
             return None
 
+    def combine_emails(self, register_email: str, config_email: str) -> str:
+        """
+                  将register_email的@前部分和config_email的@后部分拼接成新邮箱
+        
+                  参数:
+            register_email: 用户注册邮箱(如 'test1@admin.com')
+            config_email: 配置邮箱(如 'test2@root.com')
+        
+                  返回:
+                      拼接后的新邮箱(如 'test1@root.com')
+        """
+        # 分割register_email获取@前部分
+        register_part = register_email.split('@')[0]
+        # 分割config_email获取@后部分
+        config_part = config_email.split('@')[1]
+        # 拼接两部分
+        new_email = f"{register_part}@{config_part}"
+        return new_email
+    
     def register_cursor(self):
         """Register Cursor"""
         browser_tab = None
@@ -131,6 +150,7 @@ class CursorRegistration:
                     if not epin:
                         epin = ''
                     if email: # and epin:
+                        email = combine_emails(self.email_address, email)
                         from email_tabs.tempmail_plus_tab import TempMailPlusTab
                         email_tab = TempMailPlusTab(email, epin, self.translator)
                         print(f"{Fore.CYAN}{EMOJI['MAIL']} {self.translator.get('register.using_tempmail_plus')}{Style.RESET_ALL}")
