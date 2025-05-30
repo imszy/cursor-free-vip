@@ -107,7 +107,6 @@ class TempMailPlusTab(EmailTabInterface):
             response.raise_for_status()
             
             data = response.json()
-            print(data)
             if data.get('result') and data.get('mail_list'):
                 # Check if the first email in the list is a new email
                 if data['mail_list'][0].get('is_new') == True:
@@ -154,9 +153,6 @@ class TempMailPlusTab(EmailTabInterface):
             from_mail = data.get('from_mail', '')
             subject = data.get('subject')
             txt = data.get('text')
-            print('------')
-            print(f'{from_mail}, {subject}, {txt}')
-            print('------')
             if ('cursor' not in from_mail.lower()) and ('cursor' not in subject.lower()) and ('cursor' not in txt.lower()):
                 return ""
                 
