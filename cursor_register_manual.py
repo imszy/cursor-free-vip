@@ -130,7 +130,7 @@ class CursorRegistration:
                     epin = config.get('TempMailPlus', 'epin')
                     if not epin:
                         epin = ''
-                    if email and epin:
+                    if email: # and epin:
                         from email_tabs.tempmail_plus_tab import TempMailPlusTab
                         email_tab = TempMailPlusTab(email, epin, self.translator)
                         print(f"{Fore.CYAN}{EMOJI['MAIL']} {self.translator.get('register.using_tempmail_plus')}{Style.RESET_ALL}")
