@@ -99,7 +99,7 @@ class TempMailPlusTab(EmailTabInterface):
                 'epin': self.epin
             }
             response = requests.get(
-                f"{self.base_url}/mails",
+                f"{self.base_url}/mails?email={self.email}",
                 params=params,
                 headers=self.headers,
                 cookies=self.cookies
@@ -137,7 +137,7 @@ class TempMailPlusTab(EmailTabInterface):
                 'epin': self.epin
             }
             response = requests.get(
-                f"{self.base_url}/mails/{self._cached_mail_id}",
+                f"{self.base_url}/mails/{self._cached_mail_id}?email={self.email}",
                 params=params,
                 headers=self.headers,
                 cookies=self.cookies
@@ -150,7 +150,9 @@ class TempMailPlusTab(EmailTabInterface):
                 
             # Verify if sender email contains cursor string
             from_mail = data.get('from_mail', '')
-            if 'cursor' not in from_mail.lower():
+            subject = data.get('subject')
+            txt = data.get('text')
+            if ('cursor' not in from_mail.lower()) and ('cursor' not in subject.lower()) and ('cursor' not in txt.lower()):
                 return ""
                 
             # Extract verification code from text content using regex
