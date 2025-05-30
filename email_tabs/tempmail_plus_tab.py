@@ -99,7 +99,7 @@ class TempMailPlusTab(EmailTabInterface):
                 'epin': self.epin
             }
             response = requests.get(
-                f"{self.base_url}/mails?email={self.email}",
+                f"{self.base_url}/mails",
                 params=params,
                 headers=self.headers,
                 cookies=self.cookies
@@ -137,7 +137,7 @@ class TempMailPlusTab(EmailTabInterface):
                 'epin': self.epin
             }
             response = requests.get(
-                f"{self.base_url}/mails/{self._cached_mail_id}?email={self.email}",
+                f"{self.base_url}/mails/{self._cached_mail_id}",
                 params=params,
                 headers=self.headers,
                 cookies=self.cookies
