@@ -107,6 +107,7 @@ class TempMailPlusTab(EmailTabInterface):
             response.raise_for_status()
             
             data = response.json()
+            print(data)
             if data.get('result') and data.get('mail_list'):
                 # Check if the first email in the list is a new email
                 if data['mail_list'][0].get('is_new') == True:
