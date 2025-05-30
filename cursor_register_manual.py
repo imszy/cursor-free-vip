@@ -128,6 +128,8 @@ class CursorRegistration:
                 if config.getboolean('TempMailPlus', 'enabled'):
                     email = config.get('TempMailPlus', 'email')
                     epin = config.get('TempMailPlus', 'epin')
+                    if not epin:
+                        epin = ''
                     if email and epin:
                         from email_tabs.tempmail_plus_tab import TempMailPlusTab
                         email_tab = TempMailPlusTab(email, epin, self.translator)
