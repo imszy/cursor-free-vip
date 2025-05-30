@@ -111,6 +111,7 @@ class TempMailPlusTab(EmailTabInterface):
                 # Check if the first email in the list is a new email
                 if data['mail_list'][0].get('is_new') == True:
                     self._cached_mail_id = data['mail_list'][0].get('mail_id')  # Cache the mail_id
+                    print(self._cached_mail_id)
                     
                     # Immediately retrieve verification code
                     verification_code = self._extract_verification_code()
@@ -152,6 +153,9 @@ class TempMailPlusTab(EmailTabInterface):
             from_mail = data.get('from_mail', '')
             subject = data.get('subject')
             txt = data.get('text')
+            print('------')
+            print(f'{from_mail}, {subject}, {txt}')
+            print('------')
             if ('cursor' not in from_mail.lower()) and ('cursor' not in subject.lower()) and ('cursor' not in txt.lower()):
                 return ""
                 
