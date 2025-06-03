@@ -1,5 +1,16 @@
 # Change Log
 
+## szy
+1. 当没有epin时，也能自动完成注册
+- 修改cursor_register_manual.py，当epin为None时，将其设置为''，并将"if email and epin:"改为"if email:"
+
+2. 自动拼接生成验证码收取邮箱
+- 运行软件
+- 选择2自动注册
+- 自动生成邮箱地址test@xxx.com
+- 软件自动将邮箱地址前缀test，加上配置文件中的TempMailPlus收件地址后缀@bbb.com作为收取验证码的邮箱test@bbb.com
+- 自动获取验证码完成注册
+
 ## v1.11.03
 1. Update: TempMailPlus Cursor Email Detection Logic | 更新 TempMailPlus Cursor 邮件识别逻辑
 2. Fix: Windows User Directory Path | 修正 windows 环境下用户目录的获取方式
